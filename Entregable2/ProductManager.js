@@ -24,10 +24,20 @@ class ProductManager {
      * Obtains the next id to be used
      * @returns next id
      */
-    async getNextId() {
-        const count = this.products.length;
-        const nextId = (count > 0) ? this.products[count - 1].id + 1 : 1;
-        return nextId;
+    getNextId() {
+        try {
+            const products = this.getProducts(this.path);
+            if (products.length > 0) {
+                const maxId = products.reduce((max, p) => p.id > max ? p.id : max, products[0].id);
+                return maxId + 1;
+            }
+            else {
+                return 1;
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     /**
@@ -58,29 +68,23 @@ class ProductManager {
      * @param {*} path file path
      * @returns all the products
      */
-    async getProducts(path) {
-        try {
-            if (fs.existsSync
-                (path)) {
-                const products = await fs.readFileSync(this.path, "utf8");
-                return JSON.parse(products);
-            }
-            else {
-                throw new Error("El archivo no existe");
-            }
-        }
-        catch (error) {
-            console.log('Error al leer el archivo: ', error);
+    getProducts() {
+        if (fs.existsSync(this.path)) {
+            const products = fs.readFileSync(this.path, `utf-8`)
+            return JSON.parse(products)
+        } else {
+            return []
         }
     }
+
 
     /**
      * Shows all the products from the file
      * @param {*} path file path
      */
-    async showProducts(path) {
+    async showProducts() {
         try {
-            const products = await this.getProducts(path);
+            const products = await this.getProducts();
             products.forEach((product) => {
                 console.log(JSON.stringify(product));
             });
@@ -95,10 +99,13 @@ class ProductManager {
      * @param {*} path file path
      * @param {*} id product id
      * @returns the product
-     */ 
-    async getProductById(path, id) {
+     */
+    getProductById(id) {
         try {
-            const products = await this.getProducts(path);
+            const products = this.getProducts();
+            if (!products) {
+                throw new Error("El archivo no existe");
+            }
             const product = products.find((p) => p.id === id);
             if (product) {
                 return product;
@@ -119,19 +126,23 @@ class ProductManager {
      * @param {*} product product to be updated
      * @returns the updated product
      */
-    async updateProductById(path, id, product) {
+    async updateProductById(id, product) {
         try {
-            const products = await this.getProducts(path);
-            const index = products.findIndex((p) => p.id === id);
-            if (index >= 0) {
-                products[index] = { ...products[index], ...product };
-                await fs.writeFileSync(this
-                    .path, JSON.stringify(products, null, "\t"));
-
-                console.log('Producto actualizado');
+            const products = this.getProducts();
+            if (products) {
+                const index = products.findIndex((p) => p.id === id);
+                if (index >= 0) {
+                    products[index] = { ...products[index], ...product };
+                    await fs.writeFileSync(this
+                        .path, JSON.stringify(products, null, "\t"));
+                    console.log('Producto actualizado');
+                }
+                else {
+                    throw new Error("El producto no existe");
+                }
             }
             else {
-                throw new Error("El producto no existe");
+                throw new Error("El archivo no existe");
             }
         }
         catch (error) {
@@ -144,24 +155,32 @@ class ProductManager {
      * @param {*} path file path
      * @param {*} id product id
      */
-    async deleteProductById(path, id) {
+    async deleteProductById(id) {
         try {
-            const products = await this.getProducts(path);
-            const index = products.findIndex((p) => p.id === id);
-            if (index >= 0) {
-                products[index].available = false;
-                await fs.writeFileSync
-                    (this.path, JSON.stringify(products, null, "\t"));
-                console.log('Producto eliminado');
+            const products = await this.getProducts();
+            if (products) {
+                const index = products.findIndex((p) => p.id === id);
+                if (index >= 0) {
+                    products[index].available = false;
+                    await fs.writeFileSync
+                        (this.path, JSON.stringify(products, null, "\t"));
+                    console.log('Producto eliminado');
+                }
+                else {
+                    throw new Error("El producto no existe");
+                }
             }
             else {
-                throw new Error("El producto no existe");
+                throw new Error("El archivo no existe");
             }
         }
         catch (error) {
             console.log(error);
         }
     }
+
+
+
 }
 
 const product1 = new Product('Titulo 1', 'Descripción 1', 'Price 1', 'thumbnail.photos/200/300', 10, 1);
@@ -180,7 +199,9 @@ productManager2.addProduct(product4);
 productManager2.addProduct(product5);
 productManager2.addProduct(product6);
 
-//productManager.getProductById('./1.json', 3);
-//productManager.updateProductById('./1.json', 1, product6);
-//productManager.deleteProductById('./1.json', 1);
-//productManager.showProducts('./1.json');
+//console.log(productManager.getProductById(5));
+//productManager.updateProductById(9, product6);
+//productManager.deleteProductById(9);
+// productManager.showProducts();
+// productManager2.showProducts();
+
