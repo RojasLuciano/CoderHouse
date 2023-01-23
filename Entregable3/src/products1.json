@@ -1,0 +1,74 @@
+[
+	{
+		"title": "Titulo 1",
+		"description": "Descripción 1",
+		"price": "Price 1",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 10,
+		"stock": 1,
+		"available": true,
+		"id": 1
+	},
+	{
+		"title": "Titulo 2",
+		"description": "Descripción 2",
+		"price": "Price 2",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 20,
+		"stock": 2,
+		"available": true,
+		"id": 2
+	},
+	{
+		"title": "Titulo 3",
+		"description": "Descripción 3",
+		"price": "Price 3",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 30,
+		"stock": 3,
+		"available": true,
+		"id": 3
+	},
+	{
+		"title": "Titulo 3",
+		"description": "Descripción 3",
+		"price": "Price 3",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 30,
+		"stock": 3,
+		"available": true,
+		"id": 3
+	},
+	{
+		"title": "Titulo 4",
+		"description": "Descripción 4",
+		"price": "Price 4",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 40,
+		"stock": 4,
+		"available": true,
+		"id": 4
+	},
+	{
+		"title": "Titulo 5",
+		"description": "Descripción 5",
+		"price": "Price 5",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 50,
+		"stock": 5,
+		"available": true,
+		"id": 5
+	},
+	{
+		"title": "Titulo 6",
+		"description": "Descripción 6",
+		"price": "Price 6",
+		"thumbnail": "thumbnail.photos/200/300",
+		"code": 60,
+		"stock": 6,
+		"available": true,
+		"id": 6
+	}
+
+	
+]
