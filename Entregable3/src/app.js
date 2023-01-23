@@ -10,7 +10,7 @@ const productManager = new ProductManager('./products1.json');
 
 app.get('/products', (req, res) => {
     let products = productManager.getProducts();
-    if (req.query.limit) {
+    if (req.query.limit && !isNaN(req.query.limit)) {
         products = products.slice(0, req.query.limit);
     }
     return res.json(products);
