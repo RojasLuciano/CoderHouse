@@ -191,13 +191,7 @@ productManager.addProduct(product1);
 productManager.addProduct(product2);
 productManager.addProduct(product3);
 
-const product4 = new Product('Titulo 4', 'Descripción 4', 'Price 4', 'thumbnail.photos/200/300', 40, 4);
-const product5 = new Product('Titulo 5', 'Descripción 5', 'Price 5', 'thumbnail.photos/200/300', 50, 5);
-const product6 = new Product('Titulo 6', 'Descripción 6', 'Price 6', 'thumbnail.photos/200/300', 60, 6);
-const productManager2 = new ProductManager('./products2.json');
-productManager2.addProduct(product4);
-productManager2.addProduct(product5);
-productManager2.addProduct(product6);
+
 
 //console.log(productManager.getProductById(5));
 //productManager.updateProductById(9, product6);
