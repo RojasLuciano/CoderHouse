@@ -13,10 +13,10 @@
 	{
 		"title": "Titulo 2",
 		"description": "Descripción 2",
-		"price": "Price 2",
+		"price": 20,
 		"thumbnail": "thumbnail.photos/200/300",
 		"code": 20,
-		"stock": 2,
+		"stock": 6,
 		"status": true,
 		"caregory": "category",
 		"id": 2

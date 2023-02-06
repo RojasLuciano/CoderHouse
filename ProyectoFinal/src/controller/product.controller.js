@@ -112,7 +112,7 @@ const addProduct = async (req, res) => {
  */
 const updateProduct = async (req, res) => {
     const items = await readFile(dataProducts);
-    const index = await items.findIndex(product => product.id == req.params.id);
+    const index = await items.findIndex(product => product.id == parseInt(req.params.pid));
     if (index >= 0) {
         items[index] = { ...items[index], ...req.body };
         await fs.promises.writeFile(dataProducts, JSON.stringify(items, null, '\t'));
@@ -129,7 +129,7 @@ const updateProduct = async (req, res) => {
  */
 const deleteProduct = async (req, res) => {
     const items = await readFile(dataProducts);
-    const index = await items.findIndex(product => product.id == req.params.id);
+    const index = await items.findIndex(product => product.id ==  parseInt(req.params.pid));
     if (index >= 0) {
         items.splice(index, 1);
         await fs.promises.writeFile(dataProducts, JSON.stringify(items, null, '\t'));
