@@ -1,0 +1,35 @@
+[
+	{
+		"title": "Oranges",
+		"description": "Fresh Oranges",
+		"price": 43,
+		"thumbnail": "https://freepngimg.com/thumb/orange/19-orange-png-image-download.png",
+		"code": 298,
+		"stock": 83,
+		"category": "Fruits",
+		"status": true,
+		"id": 4
+	},
+	{
+		"title": "Apples",
+		"description": "Fresh Apples",
+		"price": 43,
+		"thumbnail": "https://freepngimg.com/thumb/apple/9-apple-png-image.png",
+		"code": 2982222,
+		"stock": 83,
+		"category": "Fruits",
+		"status": true,
+		"id": 5
+	},
+	{
+		"title": "Strawberries",
+		"description": "Fresh Strawberries",
+		"price": 86,
+		"thumbnail": "https://freepngimg.com/thumb/strawberry/1-strawberry-png-images.png",
+		"code": 16,
+		"stock": 48,
+		"category": "Fruits",
+		"status": true,
+		"id": 6
+	}
+]
